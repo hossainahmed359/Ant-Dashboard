@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+}
+
+.container {
+  margin: 20px auto;
+}
+
+.hidden_component {
+  display: none;
+}
+
+.start_component {
+  text-align: start;
+}
+
+.app_contents {
+  margin: 2rem auto;
+}
+
+.male,
+.female {
+  font-weight: 600;
+}
+.male {
+  color: #483d8b;
+}
+
+.female {
+  color: #ff1493;
+}
+
+.search_container {
+  margin: 2rem 0;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  justify-content: start;
+}
+
+.input_contents {
+  margin: 1rem 1.5rem 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
