@@ -1,4 +1,4 @@
-import { Breadcrumb, Button, Table } from 'antd';
+import { Breadcrumb, Button, Modal, Table } from 'antd';
 import React from 'react';
 import { useState } from 'react/cjs/react.development';
 import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
@@ -94,8 +94,13 @@ const CrudTable = () => {
 
     // Delete function
     const onDeletePerson = (record) => {
-        setDataSource(pre => {
-          return  pre.filter(person => person.id !== record.id);
+        Modal.confirm({
+            title: 'Are you sure you want to delete?',
+            onOk: () => {
+                setDataSource(pre => {
+                    return  pre.filter(person => person.id !== record.id);
+                  })
+            }
         })
     };
 
