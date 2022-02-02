@@ -14,6 +14,7 @@ import { Link , Route, Routes } from 'react-router-dom';
 import OfficialsTable from './components/OfficialsTable/OfficialsTable';
 import AppTableCrud from './components/AppTableCrud/AppTableCrud';
 import SimpleTable from './components/ExploreTables/SimpleTable';
+import CheckBoxTable from './components/ExploreTables/CheckBoxTable';
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -43,7 +44,10 @@ function App() {
                       </Menu.Item>
                       <SubMenu icon={<TableOutlined />} title="Tables">
                         <Menu.Item key="3" icon={<UnorderedListOutlined />}>
-                            <Link to='/simp_table'>SimpleTable</Link>
+                            <Link to='/simp_table'>Simple</Link>
+                        </Menu.Item>
+                        <Menu.Item key="4" icon={<UnorderedListOutlined />}>
+                            <Link to='/checkbox_table'>Checkbox</Link>
                         </Menu.Item>
                       </SubMenu>
                   </Menu>
@@ -55,6 +59,7 @@ function App() {
                     <Route  path="/todos" element={<AppTableCrud/>}/>
                     <Route  path="/officials" element={<OfficialsTable/>}/>
                     <Route  path="/simp_table" element={<SimpleTable/>}/>
+                    <Route  path="/checkbox_table" element={<CheckBoxTable/>}/>
                   </Routes>
                 </div>
               </Content>

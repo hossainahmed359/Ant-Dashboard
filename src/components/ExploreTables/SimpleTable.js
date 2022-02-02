@@ -3,6 +3,17 @@ import React, { useEffect, useState } from 'react';
 
 const SimpleTable = () => {
 
+    // **** Learnings ****
+    /* 
+        1.Table component
+        2.Create columns and set data
+        3.Custom rendering a specific column
+        4.Loading option
+        5.Pagination
+        6.Filter
+        7.Sorting
+    */
+
     // Set loaded data && Loading function && Custom pagination
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
