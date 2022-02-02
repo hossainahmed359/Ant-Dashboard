@@ -80,7 +80,7 @@ const CheckBoxTable = () => {
                             setAlreadySelectedRows(keys)
                         },
                         onSelect:(record) => {
-                            console.log(record);
+                            // console.log(record);
                         },
                         getCheckboxProps:(record) => ({
                             disabled:record.grade === 'C'
