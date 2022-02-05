@@ -18,6 +18,7 @@ import CheckBoxTable from './components/ExploreTables/CheckBoxTable';
 import CrudTable from './components/ExploreTables/CrudTable';
 import SearchTable from './components/ExploreTables/SearchTable';
 import PaginationTable from './components/ExploreTables/PaginationTable';
+import CountriesTable from './components/ExploreTables/CountriesTable';
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -61,6 +62,9 @@ function App() {
                         <Menu.Item key="7" icon={<UnorderedListOutlined />}>
                             <Link to='/pagination_table'>Pagination</Link>
                         </Menu.Item>
+                        <Menu.Item key="8" icon={<UnorderedListOutlined />}>
+                            <Link to='/countries_table'>Countries</Link>
+                        </Menu.Item>
                       </SubMenu>
                   </Menu>
               </Sider>
@@ -75,6 +79,7 @@ function App() {
                     <Route  path="/crud_table" element={<CrudTable/>}/>
                     <Route  path="/search_table" element={<SearchTable/>}/>
                     <Route  path="/pagination_table" element={<PaginationTable/>}/>
+                    <Route  path="/countries_table" element={<CountriesTable/>}/>
                   </Routes>
                 </div>
               </Content>
