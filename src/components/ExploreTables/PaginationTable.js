@@ -1,6 +1,7 @@
-import { Breadcrumb, Table } from 'antd';
+import { Breadcrumb, Button, Input, Table, Tag } from 'antd';
 import React, { useEffect } from 'react';
 import { useState } from 'react/cjs/react.development';
+import { SearchOutlined } from '@ant-design/icons';
 
 const PaginationTable = () => {
 
@@ -14,17 +15,63 @@ const PaginationTable = () => {
     const columns = [
         {
             title: 'Id',
-            dataIndex: '_id'
+            dataIndex: '_id',
+            filterDropdown: ({setSelectedKeys, selectedKeys, clearFilters, confirm}) => {
+                return <>
+                            <Input
+                                autoFocus
+                                placeholder='Type Id here'
+                                value={selectedKeys[0]}
+                                onChange={(e) => {
+                                    setSelectedKeys(e.target.value ? [e.target.value] : [])
+                                    confirm({closeDropdown: false})
+                                }}
+                                onPressEnter={() => confirm()}    
+                                onBlur={() => confirm()}   
+                            ></Input>
+                            <Button onClick={() => confirm()} type='primary'>Search</Button>
+                            <Button onClick={() => clearFilters()} type='danger'>Clear</Button>
+                       </>
+            },
+            filterIcon: () => {
+                return <SearchOutlined/>;
+            },
+            onFilter: (value, record) => {
+                return record._id.includes(value);
+            }
         },
         {
             title: 'Name',
-            dataIndex: 'name'
+            dataIndex: 'name',
+            filterDropdown: ({setSelectedKeys, selectedKeys, clearFilters, confirm}) => {
+                return <>
+                            <Input
+                                autoFocus
+                                placeholder='Type Name here'
+                                value={selectedKeys[0]}
+                                onChange={(e) => {
+                                    setSelectedKeys(e.target.value ? [e.target.value] : [])
+                                    confirm({closeDropdown: false})
+                                }}
+                                onPressEnter={() => confirm()}    
+                                onBlur={() => confirm()}   
+                            ></Input>
+                            <Button onClick={() => confirm()} type='primary'>Search</Button>
+                            <Button onClick={() => clearFilters()} type='danger'>Clear</Button>
+                       </>
+            },
+            filterIcon: () => {
+                return <SearchOutlined/>;
+            },
+            onFilter: (value, record) => {
+                return record.name.toLowerCase().includes(value.toLowerCase())
+            }
         },
         {
             title: 'Trips',
             render: (record) => {
                 const trips = record?.trips;
-                return !trips ? 0 : trips;
+                return !trips ? <Tag color="Red">0</Tag> : trips;
             }
         },
     ];
