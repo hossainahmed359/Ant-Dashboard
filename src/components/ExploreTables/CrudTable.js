@@ -147,12 +147,10 @@ const CrudTable = () => {
                         setDataSource(pre => {
                             return pre.map(person => {
                                 if (person.id === editingPerson.id) {
-                                    console.log(editingPerson)
                                     return editingPerson;
                                 } else {
                                     return person;
                                 }
-                            
                             })
                         })
 

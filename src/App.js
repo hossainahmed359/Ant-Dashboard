@@ -16,6 +16,7 @@ import AppTableCrud from './components/AppTableCrud/AppTableCrud';
 import SimpleTable from './components/ExploreTables/SimpleTable';
 import CheckBoxTable from './components/ExploreTables/CheckBoxTable';
 import CrudTable from './components/ExploreTables/CrudTable';
+import SearchTable from './components/ExploreTables/SearchTable';
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -53,6 +54,9 @@ function App() {
                         <Menu.Item key="5" icon={<UnorderedListOutlined />}>
                             <Link to='/crud_table'>Crud</Link>
                         </Menu.Item>
+                        <Menu.Item key="6" icon={<UnorderedListOutlined />}>
+                            <Link to='/search_table'>Search</Link>
+                        </Menu.Item>
                       </SubMenu>
                   </Menu>
               </Sider>
@@ -65,6 +69,7 @@ function App() {
                     <Route  path="/simp_table" element={<SimpleTable/>}/>
                     <Route  path="/checkbox_table" element={<CheckBoxTable/>}/>
                     <Route  path="/crud_table" element={<CrudTable/>}/>
+                    <Route  path="/search_table" element={<SearchTable/>}/>
                   </Routes>
                 </div>
               </Content>
