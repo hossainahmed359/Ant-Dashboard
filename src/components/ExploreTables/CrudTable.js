@@ -1,10 +1,15 @@
-import { Breadcrumb, Button, Modal, Table } from 'antd';
+import { Breadcrumb, Button, Input, Modal, Table } from 'antd';
 import React from 'react';
 import { useState } from 'react/cjs/react.development';
 import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
 
 
 const CrudTable = () => {
+
+    // Modal
+    const [isEditing, setIsEditing] = useState(false);
+    // Editing
+    const [editingPerson, setEditingPerson] = useState(null);
 
     // Data source
     const [dataSource, setDataSource] = useState([
@@ -68,7 +73,7 @@ const CrudTable = () => {
             render: (record) => {
                 return( 
                 <>
-                    <EditOutlined />
+                    <EditOutlined onClick={() => onUpdate(record)}/>
                     <DeleteOutlined onClick={() => onDeletePerson(record)} style={{color: 'red', marginLeft: '15px'}}/>
                 </>)
             },
@@ -96,6 +101,7 @@ const CrudTable = () => {
     const onDeletePerson = (record) => {
         Modal.confirm({
             title: 'Are you sure you want to delete?',
+            okType: 'danger',
             onOk: () => {
                 setDataSource(pre => {
                     return  pre.filter(person => person.id !== record.id);
@@ -103,6 +109,17 @@ const CrudTable = () => {
             }
         })
     };
+
+    // Update function
+    const onUpdate = (record) => {
+        setIsEditing(true);
+        setEditingPerson({...record});
+    }
+
+    const resetEditing = () => {
+        setIsEditing(false);
+        setEditingPerson(null);
+    }
 
     return (
         <div>
@@ -118,6 +135,47 @@ const CrudTable = () => {
                     columns={columns}
                     dataSource={dataSource}
                 ></Table>
+                <Modal
+                    visible={isEditing}
+                    title="Edit Person"
+                    okText="Save"
+                    onCancel={() => {
+                        resetEditing()
+                }}
+                    onOk={() => {
+                        // console.log(editingPerson)
+                        setDataSource(pre => {
+                            return pre.map(person => {
+                                if (person.id === editingPerson.id) {
+                                    console.log(editingPerson)
+                                    return editingPerson;
+                                } else {
+                                    return person;
+                                }
+                            
+                            })
+                        })
+
+                        // Modal close option
+                        setIsEditing(false)    
+                    }}
+                >
+                    <Input value={editingPerson?.name} onChange={(e) => {
+                        setEditingPerson(pre => {
+                            return {...pre, name: e.target.value}
+                        })
+                    }}></Input>
+                    <Input value={editingPerson?.email} onChange={(e) => {
+                        setEditingPerson(pre => {
+                            return {...pre, email: e.target.value}
+                        })
+                    }}></Input>
+                    <Input value={editingPerson?.address} onChange={(e) => {
+                        setEditingPerson(pre => {
+                            return {...pre, address: e.target.value}
+                        })
+                    }}></Input>
+                </Modal>
             </div>
         </div>
     );
